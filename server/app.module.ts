@@ -6,6 +6,7 @@ import { AngularModule } from './angular.provider'
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './modules/users/user.module';
 import { MongoDatabaseModule } from './mongo/mongo-database.module';
+import { CronModule } from './cron/cron.module';
 
 const domino = require('domino');
 const win = domino.createWindow();
@@ -24,6 +25,7 @@ global['getItem'] = undefined;
     MongoDatabaseModule,
     AuthModule,
     UserModule,
+    CronModule
     // TODO: UNCOMMENT TO VIEW ISSUE
     // AngularModule.asyncAfterLoad() // Contains AngularUniversalModule.forRoot()
   ],

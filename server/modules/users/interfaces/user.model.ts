@@ -15,6 +15,9 @@ export const UserSchema = new Schema({
             title: String,
             street: String,
             street_two: String,
+            city: String,
+            state: String,
+            zip_code: Number
         }
     ],
     user_roles: [
@@ -42,6 +45,10 @@ interface ModelUserAddresses {
     id: string
     title: string
     street: string
+    streetTwo: string
+    city: string,
+    state: string,
+    zip_code: number
 }
 
 interface ModelUserRoles {
