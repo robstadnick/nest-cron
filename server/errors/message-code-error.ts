@@ -10,7 +10,7 @@ export class MessageCodeError extends Error {
         super();
 
         const errorMessageConfig = this.getMessageFromMessageCode(messageCode);
-        if (!errorMessageConfig) throw new Error('Unable to find message code error.');
+        if (!errorMessageConfig) { throw new Error('Unable to find message code error.'); }
 
         Error.captureStackTrace(this, this.constructor);
         this.name = this.constructor.name;
@@ -35,7 +35,7 @@ export class MessageCodeError extends Error {
             return false;
         });
 
-        if (!errorMessageConfig) throw new Error('Unable to find the given message code error.');
+        if (!errorMessageConfig) { throw new Error('Unable to find the given message code error.'); }
         return errorMessageConfig;
     }
 }

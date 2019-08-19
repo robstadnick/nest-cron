@@ -1,7 +1,7 @@
 import { HttpStatus } from '@nestjs/common';
 import { IErrorMessages } from '../../../errors/interfaces/error-message.interface';
 
-export const errorMessagesConfig: { [messageCode: string]: IErrorMessages } = {
+export const errorMessagesUsers: { [messageCode: string]: IErrorMessages } = {
     'user:create:missingInformation': {
         type: 'BadRequest',
         httpStatus: HttpStatus.BAD_REQUEST,
