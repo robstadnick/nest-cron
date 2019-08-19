@@ -4,6 +4,6 @@ import { errorMessagesCron } from '../../cron/helpers/cron.error-message';
 import { errorMessagesUsers } from '../../modules/users/helpers/user-error-message';
 const errorMessagesConfig = [
     errorMessagesCron, errorMessagesUsers
-] as { [messageCode: string]: IErrorMessages }[]
+] as { [messageCode: string]: IErrorMessages }[];
 
 export { errorMessagesConfig };
