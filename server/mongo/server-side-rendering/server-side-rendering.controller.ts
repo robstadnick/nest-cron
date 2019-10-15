@@ -16,13 +16,5 @@ export class ServerSideRenderingController {
         } else {
             return res.sendFile(html);
         }
-        // else if (req.url.startsWith('/home')) {
-        //     return res.sendFile(html);
-        // } else if (req.url.startsWith('/auth')) {
-        //     return res.sendFile(html);
-        // } else {
-        //     return res.sendFile(html);
-        //     // throw new NotFoundException('Your Request Can Not Be Compeleted');
-        // }
     }
 }
