@@ -5,7 +5,7 @@ import * as jwt from 'jsonwebtoken'
 // import { ModelUser } from '../database/models/users/user.model';
 import { UserService } from '../modules/users/user.service';
 import { DTOPasswordResetURL, DTOSetPassword, JWTObject } from './interfaces/auth.dto';
-import { ModelUser } from '../modules/users/interfaces/user.model';
+import { ModelUser } from '../mongo/models/users/user.model';
 // import { ModelUserRoles } from '../database/models/users/user.roles.model';
 
 @Injectable()
@@ -29,8 +29,8 @@ export class AuthService {
         return jwt.sign({
             id: user.id,
             email: user.email,
-            first_name: user.first_name,
-            last_name: user.last_name,
+            first_name: user.profile.first_name,
+            last_name: user.profile.last_name,
             role: roles,
         }, process.env.JWT_SECRET, { expiresIn: '1 days' });
         // }, process.env.JWT_SECRET, { expiresIn: 10 });

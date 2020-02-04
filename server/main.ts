@@ -9,8 +9,9 @@ import * as bodyParser from 'body-parser';
 import * as forceSsl from 'force-ssl-heroku';
 import * as fileupload from 'express-fileupload';
 import * as helmet from 'helmet';
-
 import * as path from 'path';
+import { Logger } from '@nestjs/common';
+
 if (process.env.NODE_ENV === 'production') {
   enableProdMode();
 }
@@ -20,16 +21,16 @@ const DIST_BROWSER_FOLDER = path.join(DIST_FOLDER, 'browser');
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(ApplicationModule);
+  app.setViewEngine('html');
   app.useStaticAssets(DIST_BROWSER_FOLDER);
   app.setBaseViewsDir(DIST_BROWSER_FOLDER);
   app.use(forceSsl);
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
   const port = process.env.PORT || '4082';
-  app.use(fileupload());
   app.use(helmet());
-  app.setGlobalPrefix('api');
   await app.listen(port);
-  console.log('Started Server on Port ', port);
+  const logger = new Logger('Bootstrap')
+  logger.log(`Server Started on Port: ${port}`)
 }
 bootstrap();

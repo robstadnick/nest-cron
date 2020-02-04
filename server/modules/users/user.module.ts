@@ -1,37 +1,28 @@
-import { Module, RequestMethod } from '@nestjs/common';
+import { Module, RequestMethod, HttpModule } from '@nestjs/common';
 import { MiddlewareConsumer } from '@nestjs/common/interfaces/middleware';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { AuthMiddleware } from '../../auth/middleware/auth.middleware';
-import { MongooseModule, getModelToken } from '@nestjs/mongoose';
-import { UserSchema, ModelUser } from './interfaces/user.model';
+import { MongooseModule } from '@nestjs/mongoose';
+import { UserSchema } from '../../mongo/models/users/user.model';
+// import { DatabaseModule } from '../../databasa/database.module';
+// import { userProviders } from './user.provider';
 
 @Module({
     imports: [
         MongooseModule.forFeature([
             { name: 'USER_MODEL', schema: UserSchema },
         ]),
+        HttpModule
     ],
-    controllers: [
-        UserController,
-    ],
+    controllers: [UserController],
     providers: [
-        // ...userProviders,
         UserService,
     ],
     exports: [
-        UserService
+        UserService,
     ]
 })
 export class UserModule {
-    // public configure(consumer: MiddlewareConsumer) {
-    //     consumer
-    //         .apply(AuthMiddleware)
-    //         .forRoutes(
-    //             { path: '/users', method: RequestMethod.GET },
-    //             { path: '/users/:id', method: RequestMethod.GET },
-    //             { path: '/users/:id', method: RequestMethod.PUT },
-    //             { path: '/users/:id', method: RequestMethod.DELETE }
-    //         );
-    // }
+ 
 }
